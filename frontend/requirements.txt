@@ -1,0 +1,26 @@
+# Frontend development tools (if using Python-based tools)
+
+# Storybook
+storybook==7.5.3
+
+# Testing
+@testing-library/react==13.4.0
+@testing-library/jest-dom==6.1.4
+@testing-library/user-event==14.5.1
+
+# Linting and formatting
+eslint==8.53.0
+prettier==3.0.3
+typescript==5.2.2
+
+# Build tools
+vite==5.0.0
+@vitejs/plugin-react==4.1.1
+
+# Styling
+tailwindcss==3.3.5
+autoprefixer==10.4.16
+postcss==8.4.31
+
+# Note: Most frontend dependencies are managed via package.json
+# This file is for Python-based tools that might be used in the frontend pipeline 
