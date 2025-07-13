@@ -1,13 +1,13 @@
 import { describe, it, expect } from 'vitest'
+import React from 'react'
+import ReactDOM from 'react-dom/client'
 
 describe('main.tsx', () => {
   it('can import React', () => {
-    const React = require('react')
     expect(React).toBeDefined()
   })
 
   it('can import ReactDOM', () => {
-    const ReactDOM = require('react-dom/client')
     expect(ReactDOM).toBeDefined()
     expect(ReactDOM.createRoot).toBeDefined()
   })
