@@ -1,8 +1,7 @@
-"""
+﻿"""
 Tests for the application configuration.
 """
 
-import pytest
 from app.core.config import settings
 
 
@@ -68,4 +67,4 @@ def test_rate_limit_default():
 def test_cache_ttl_defaults():
     """Test that cache TTL settings have default values."""
     assert settings.CACHE_TTL_SECONDS == 30
-    assert settings.HISTORICAL_CACHE_TTL_DAYS == 7 
+    assert settings.HISTORICAL_CACHE_TTL_DAYS == 7
