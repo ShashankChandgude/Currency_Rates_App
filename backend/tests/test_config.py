@@ -3,6 +3,7 @@ Tests for the application configuration.
 """
 
 import os
+
 from app.core.config import settings
 
 
