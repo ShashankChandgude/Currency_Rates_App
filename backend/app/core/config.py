@@ -12,8 +12,8 @@ class Settings(BaseSettings):
     """Application settings."""
 
     # Environment
-    ENVIRONMENT: str = Field(default="development", env="ENVIRONMENT")
-    DEBUG: bool = Field(default=True, env="DEBUG")
+    ENVIRONMENT: str = Field(default="development")
+    DEBUG: bool = Field(default=True)
 
     # API
     API_V1_STR: str = "/api/v1"
@@ -21,8 +21,7 @@ class Settings(BaseSettings):
 
     # CORS
     ALLOWED_HOSTS: List[str] = Field(
-        default=["http://localhost:3000", "http://localhost:8000"],
-        env="ALLOWED_HOSTS",
+        default=["http://localhost:3000", "http://localhost:8000"]
     )
 
     # Database
@@ -30,41 +29,31 @@ class Settings(BaseSettings):
         default=(
             "postgresql://currency_user:currency_password@localhost:"
             "5432/currency_app"
-        ),
-        env="DATABASE_URL",
+        )
     )
 
     # Redis
-    REDIS_URL: str = Field(
-        default="redis://localhost:6379",
-        env="REDIS_URL",
-    )
+    REDIS_URL: str = Field(default="redis://localhost:6379")
 
     # Logging
-    LOG_LEVEL: str = Field(default="INFO", env="LOG_LEVEL")
+    LOG_LEVEL: str = Field(default="INFO")
 
     # External APIs
     EXCHANGE_RATE_API_URL: str = Field(
-        default="https://api.exchangerate.host",
-        env="EXCHANGE_RATE_API_URL",
+        default="https://api.exchangerate.host"
     )
 
     # Rate limiting
-    RATE_LIMIT_PER_MINUTE: int = Field(default=60, env="RATE_LIMIT_PER_MINUTE")
+    RATE_LIMIT_PER_MINUTE: int = Field(default=60)
 
     # Cache settings
-    CACHE_TTL_SECONDS: int = Field(
-        default=30,
-        env="CACHE_TTL_SECONDS",
-    )
-    HISTORICAL_CACHE_TTL_DAYS: int = Field(
-        default=7,
-        env="HISTORICAL_CACHE_TTL_DAYS",
-    )
+    CACHE_TTL_SECONDS: int = Field(default=30)
+    HISTORICAL_CACHE_TTL_DAYS: int = Field(default=7)
 
-    class Config:
-        env_file = ".env"
-        case_sensitive = True
+    model_config = {
+        "env_file": ".env",
+        "case_sensitive": True,
+    }
 
 
 # Create settings instance
