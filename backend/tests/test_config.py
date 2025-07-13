@@ -2,6 +2,7 @@
 Tests for the application configuration.
 """
 
+import os
 from app.core.config import settings
 
 
@@ -13,7 +14,8 @@ def test_settings_instance():
 
 def test_environment_default():
     """Test that environment has a default value."""
-    assert settings.ENVIRONMENT == "development"
+    expected = os.getenv("ENVIRONMENT", "development")
+    assert settings.ENVIRONMENT == expected
 
 
 def test_debug_default():
