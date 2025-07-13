@@ -3,6 +3,7 @@ Tests for the logging configuration.
 """
 
 import logging
+
 from app.core.logging import setup_logging
 
 

@@ -39,9 +39,7 @@ class Settings(BaseSettings):
     LOG_LEVEL: str = Field(default="INFO")
 
     # External APIs
-    EXCHANGE_RATE_API_URL: str = Field(
-        default="https://api.exchangerate.host"
-    )
+    EXCHANGE_RATE_API_URL: str = Field(default="https://api.exchangerate.host")
 
     # Rate limiting
     RATE_LIMIT_PER_MINUTE: int = Field(default=60)

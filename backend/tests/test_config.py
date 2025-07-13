@@ -8,7 +8,7 @@ from app.core.config import settings
 def test_settings_instance():
     """Test that settings instance is created successfully."""
     assert settings is not None
-    assert hasattr(settings, 'ENVIRONMENT')
+    assert hasattr(settings, "ENVIRONMENT")
 
 
 def test_environment_default():
