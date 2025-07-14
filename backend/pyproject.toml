@@ -1,0 +1,12 @@
+[build-system]
+requires = ["setuptools>=69.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "currency-rates-app-backend"
+version = "0.1.0"
+description = "Backend API for Currency Rates Application"
+authors = [
+    {name = "Currency Rates App Team"}
+]
+requires-python = ">=3.11,<3.12" 

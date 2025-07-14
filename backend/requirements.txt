@@ -44,8 +44,8 @@ python-multipart==0.0.6
 slowapi==0.1.9
 
 # Data Processing
-pandas==2.1.4
-numpy==1.25.2
+pandas==2.2.0
+numpy==1.26.4
 python-dateutil==2.8.2
 pytz==2023.3
 
