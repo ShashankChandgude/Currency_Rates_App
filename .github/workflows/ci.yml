@@ -15,6 +15,7 @@ permissions:
   security-events: write
   actions: read
   contents: read
+  packages: write
 
 jobs:
   # Backend tests and linting
@@ -159,8 +160,8 @@ jobs:
         file: backend/Dockerfile.dev
         push: true
         tags: |
-          ghcr.io/${{ env.REGISTRY_OWNER_LOWER }}/currency_rates_app/backend:latest
-          ghcr.io/${{ env.REGISTRY_OWNER_LOWER }}/currency_rates_app/backend:${{ github.sha }}
+          ghcr.io/${{ env.REGISTRY_OWNER_LOWER }}/currency-rates-app-backend:latest
+          ghcr.io/${{ env.REGISTRY_OWNER_LOWER }}/currency-rates-app-backend:${{ github.sha }}
         cache-from: type=gha
         cache-to: type=gha,mode=max
 
@@ -171,8 +172,8 @@ jobs:
         file: ./frontend/Dockerfile.dev
         push: true
         tags: |
-          ghcr.io/${{ env.REGISTRY_OWNER_LOWER }}/currency_rates_app/frontend:latest
-          ghcr.io/${{ env.REGISTRY_OWNER_LOWER }}/currency_rates_app/frontend:${{ github.sha }}
+          ghcr.io/${{ env.REGISTRY_OWNER_LOWER }}/currency-rates-app-frontend:latest
+          ghcr.io/${{ env.REGISTRY_OWNER_LOWER }}/currency-rates-app-frontend:${{ github.sha }}
         cache-from: type=gha
         cache-to: type=gha,mode=max
 
