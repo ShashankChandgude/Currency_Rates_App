@@ -1,5 +1,7 @@
 from datetime import datetime
+
 from app.core.value_objects import CurrencyCode, PositiveAmount
+
 
 class Currency:
     def __init__(self, code: CurrencyCode, name: str):
@@ -29,6 +31,7 @@ class Currency:
     def __repr__(self):
         return f"Currency(code={self.code!r}, name={self.name!r})"
 
+
 class Provider:
     def __init__(self, id: int, name: str, url: str):
         if not isinstance(id, int) or id < 0:
@@ -56,14 +59,27 @@ class Provider:
 
     def __eq__(self, other):
         if isinstance(other, Provider):
-            return self.id == other.id and self.name == other.name and self.url == other.url
+            return (
+                self.id == other.id
+                and self.name == other.name
+                and self.url == other.url
+            )
         return False
 
     def __repr__(self):
         return f"Provider(id={self.id!r}, name={self.name!r}, url={self.url!r})"
 
+
 class Rate:
-    def __init__(self, id: int, time: datetime, base: Currency, quote: Currency, value: PositiveAmount, provider: Provider):
+    def __init__(
+        self,
+        id: int,
+        time: datetime,
+        base: Currency,
+        quote: Currency,
+        value: PositiveAmount,
+        provider: Provider,
+    ):
         if not isinstance(value, PositiveAmount):
             raise ValueError("value must be a PositiveAmount")
         self._id = id
@@ -105,12 +121,12 @@ class Rate:
     def __eq__(self, other):
         if isinstance(other, Rate):
             return (
-                self.id == other.id and
-                self.time == other.time and
-                self.base == other.base and
-                self.quote == other.quote and
-                self.value == other.value and
-                self.provider == other.provider
+                self.id == other.id
+                and self.time == other.time
+                and self.base == other.base
+                and self.quote == other.quote
+                and self.value == other.value
+                and self.provider == other.provider
             )
         return False
 
@@ -118,4 +134,4 @@ class Rate:
         return (
             f"Rate(id={self.id!r}, time={self.time!r}, base={self.base!r}, "
             f"quote={self.quote!r}, value={self.value!r}, provider={self.provider!r})"
-        ) 
+        )

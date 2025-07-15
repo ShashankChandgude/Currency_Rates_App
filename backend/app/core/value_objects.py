@@ -1,5 +1,6 @@
 import re
 
+
 class CurrencyCode:
     _iso_4217_pattern = re.compile(r"^[A-Z]{3}$")
 
@@ -27,10 +28,13 @@ class CurrencyCode:
     def __repr__(self):
         return f"CurrencyCode({self.value!r})"
 
+
 class PositiveAmount:
     def __init__(self, value: float):
         if not isinstance(value, (int, float)) or isinstance(value, bool) or value <= 0:
-            raise ValueError(f"PositiveAmount must be a positive number, got: {value!r}")
+            raise ValueError(
+                f"PositiveAmount must be a positive number, got: {value!r}"
+            )
         self._value = float(value)
 
     @property
@@ -50,4 +54,4 @@ class PositiveAmount:
         return False
 
     def __repr__(self):
-        return f"PositiveAmount({self.value!r})" 
+        return f"PositiveAmount({self.value!r})"
