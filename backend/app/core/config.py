@@ -27,8 +27,7 @@ class Settings(BaseSettings):
     # Database
     DATABASE_URL: str = Field(
         default=(
-            "postgresql://currency_user:CuPSQL@2025#@localhost:"
-            "5432/currency_app"
+            "postgresql://currency_user:CuPSQL@2025#@localhost:" "5432/currency_app"
         )
     )
 
