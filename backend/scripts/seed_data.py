@@ -1,8 +1,9 @@
 from datetime import datetime
 from decimal import Decimal
-from sqlalchemy import create_engine, select, and_
-from sqlalchemy.orm import Session
+
 from app.db.models import Currency, Provider, Rate
+from sqlalchemy import create_engine
+from sqlalchemy.orm import Session
 
 # Database connection
 DATABASE_URL = "postgresql://currency_user:CuPSQL%402025%23@localhost:5432/currency_app"
@@ -16,13 +17,13 @@ CURRENCIES = [
     ("JPY", "Japanese Yen"),
     ("CAD", "Canadian Dollar"),
     ("AUD", "Australian Dollar"),
-    ("CHF", "Swiss Franc")
+    ("CHF", "Swiss Franc"),
 ]
 
 PROVIDERS = [
     ("Alpha Exchange", "https://api.alpha-exchange.com"),
     ("Beta Markets", "https://api.beta-markets.com"),
-    ("Gamma Rates", "https://api.gamma-rates.com")
+    ("Gamma Rates", "https://api.gamma-rates.com"),
 ]
 
 # Base rates against USD
@@ -32,8 +33,9 @@ BASE_RATES = {
     "JPY": "110.25",
     "CAD": "1.25",
     "AUD": "1.35",
-    "CHF": "0.92"
+    "CHF": "0.92",
 }
+
 
 def generate_rates(variation: float = 0.0) -> list:
     """Generate rates with optional variation for different providers."""
@@ -44,27 +46,30 @@ def generate_rates(variation: float = 0.0) -> list:
         rates.append(("USD", quote, str(round(value, 8))))
     return rates
 
+
 def clean_database():
     """Remove old test data before seeding."""
     with Session(engine) as session:
         # Delete old rates first (due to foreign key constraints)
         session.query(Rate).delete()
-        
+
         # Delete old providers
         session.query(Provider).delete()
-        
+
         # Delete old currencies
         session.query(Currency).delete()
-        
+
         session.commit()
 
+
 # ...existing imports...
+
 
 def seed_database():
     """Seed the database with fresh test data."""
     # Clean existing data first
     clean_database()
-    
+
     with Session(engine) as session:
         # Add currencies
         for code, name in CURRENCIES:
@@ -84,7 +89,7 @@ def seed_database():
         for idx, (provider_name, provider_id) in enumerate(provider_ids.items()):
             variation = idx * 0.01  # 0%, 1%, 2% variation
             rates = generate_rates(variation)
-            
+
             # Add base rates
             for base, quote, value in rates:
                 rate = Rate(
@@ -92,10 +97,10 @@ def seed_database():
                     base_code=base,
                     quote_code=quote,
                     value=Decimal(value),
-                    provider_id=provider_id
+                    provider_id=provider_id,
                 )
                 session.add(rate)
-            
+
             # Add inverse rates
             for base, quote, value in rates:
                 inverse_value = str(round(1 / Decimal(value), 8))
@@ -104,11 +109,12 @@ def seed_database():
                     base_code=quote,
                     quote_code=base,
                     value=Decimal(inverse_value),
-                    provider_id=provider_id
+                    provider_id=provider_id,
                 )
                 session.add(rate)
-            
+
             session.commit()
+
 
 if __name__ == "__main__":
     seed_database()
